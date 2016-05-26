@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Yet Another Notebook</string>
+    <string name="press_to_add_a_note">Press + to add a note.</string>
+    <string name="menu_item_search">Search</string>
+    <string name="menu_item_restore">Restore notes</string>
+    <string name="menu_item_backup">Backup notes</string>
+    <string name="et_hint_title">TITLE</string>
+</resources>
