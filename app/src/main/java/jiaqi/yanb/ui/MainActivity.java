@@ -1,4 +1,4 @@
-package jiaqi.yanb;
+package jiaqi.yanb.ui;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -9,18 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jiaqi.yanb.Note;
+import jiaqi.yanb.NoteLab;
+import jiaqi.yanb.R;
 import jiaqi.yanb.adapters.RvNotesAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,31 +27,39 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String NOTE = "note";
 
+    private NoteLab mNoteLab;
     private List<Note> mNotes;
     private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.Adapter mAdapter;
+    private RvNotesAdapter mAdapter;
 
-    //    @BindView(R.id.toolbar_main)
+    @BindView(R.id.toolbar_main)
     Toolbar mToolbar;
-    //    @BindView(R.id.rv_notes)
+    @BindView(R.id.rv_notes)
     RecyclerView mRvNotes;
-    //    @BindView(R.id.fab_add_note)
+    @BindView(R.id.fab_add_note)
     FloatingActionButton mFabAddNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
-        mNotes = new ArrayList<>();
+        mNoteLab = NoteLab.getInstance(this);
+        mNotes = mNoteLab.getNotes();
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
-        mRvNotes = (RecyclerView) findViewById(R.id.rv_notes);
-        mFabAddNote = (FloatingActionButton) findViewById(R.id.fab_add_note);
         initToolbar();
         initRecyclerView();
         initListeners();
+    }
+
+    /**
+     * obtain the latest list of notes and tell the adapter to refresh the recycler view.
+     */
+    private void updateUI() {
+        mNotes = mNoteLab.getNotes();
+        mAdapter.setNotes(mNotes);
+        mAdapter.notifyDataSetChanged();
     }
 
     private void initListeners() {
@@ -89,14 +94,14 @@ public class MainActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CREATE: {
                     Note note = (Note) data.getSerializableExtra(NOTE);
-                    mNotes.add(note);
-                    mAdapter.notifyDataSetChanged();
+                    mNoteLab.addNote(note);
+                    updateUI();
                     break;
                 }
                 case MODIFY: {
                     Note note = (Note) data.getSerializableExtra(NOTE);
-                    mNotes.add(note);
-                    mAdapter.notifyDataSetChanged();
+                    mNoteLab.updateNote(note);
+                    updateUI();
                     break;
                 }
             }
