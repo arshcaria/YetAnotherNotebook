@@ -10,5 +10,9 @@
     <string name="no">No</string>
     <string name="edit_note_activity_discard_empty_note">Empty note discarded.</string>
     <string name="edit_note_activity_discard_non_empty_note">This note is discarded.</string>
-    <string name="edit_note_activity_saving_note">Saving...</string>
+    <string name="edit_note_activity_saving_note">Saving …</string>
+    <string name="edit_note_activity_no_change">No change was made.</string>
+    <string name="edit_note_activity_title_cannot_be_empty">
+        The title cannot be empty.(If you want to delete the note,
+        return to the main list and long press the note you want to delete.)</string>
 </resources>

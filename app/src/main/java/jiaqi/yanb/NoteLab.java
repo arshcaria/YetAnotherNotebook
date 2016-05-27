@@ -12,27 +12,31 @@ import java.util.List;
 import java.util.UUID;
 
 import jiaqi.yanb.db.NoteDbHelper;
-import jiaqi.yanb.db.NoteDbSchema;
 import jiaqi.yanb.db.NoteDbSchema.NoteTable;
 
 /**
- * Created by Jiaqi on 5/27/2016.
+ * This class is for getting, adding and updating notes from DB. Use it as a helper class.
  */
 public class NoteLab {
     private static NoteLab mNoteLab;
 
     private Context mContext;
-//    private List<Note> mNotes;
     private SQLiteOpenHelper mDatabaseHelper;
     private SQLiteDatabase mDatabase;
 
+    /**
+     * Don't create new instances with the constructor. Use {@link #getInstance(Context)} instead.
+     * @see #getInstance(Context)
+     */
     private NoteLab(Context context) {
         mContext = context;
-//        mNotes = new ArrayList<>();
         mDatabaseHelper = new NoteDbHelper(mContext);
         mDatabase = mDatabaseHelper.getWritableDatabase();
     }
 
+    /**
+     *  Create and return only one instance of the {@link #NoteLab(Context)} class.
+     */
     public static NoteLab getInstance(Context context) {
         if (mNoteLab == null) {
             mNoteLab = new NoteLab(context);
@@ -83,6 +87,10 @@ public class NoteLab {
         return cursor;
     }
 
+    /**
+     * Return a list of Notes from the cursor obtained from {@link #queryFromDb(String, String[])}
+
+     */
     private List<Note> getNotesFromCursor(Cursor cursor) {
         List<Note> notes = new ArrayList<>();
 

@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <EditText
-            android:id="@+id/et_note"
+            android:id="@+id/et_content"
             android:textSize="@dimen/font_size_edit_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

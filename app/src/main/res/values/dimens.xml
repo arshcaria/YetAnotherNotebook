@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="font_size_edit_title">20sp</dimen>
     <dimen name="font_size_edit_note">15sp</dimen>
+    <dimen name="note_item_margin">20dp</dimen>
 </resources>

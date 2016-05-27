@@ -15,17 +15,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jiaqi.yanb.Constants;
 import jiaqi.yanb.Note;
 import jiaqi.yanb.NoteLab;
 import jiaqi.yanb.R;
 import jiaqi.yanb.adapters.RvNotesAdapter;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final int CREATE = 0;
-    private static final int MODIFY = 1;
-
-    public static final String NOTE = "note";
 
     private NoteLab mNoteLab;
     private List<Note> mNotes;
@@ -67,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EditNoteActivity.class);
-                intent.putExtra(EditNoteActivity.EDIT_MODE, EditNoteActivity.EditMode.CREATE);
-                startActivityForResult(intent, CREATE);
+                intent.putExtra(Constants.EXTRA_KEY_NAME_EDIT_MODE, Constants.EditMode.CREATE);
+                startActivityForResult(intent, Constants.REQUEST_CODE_CREATE);
             }
         });
     }
@@ -76,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView() {
         mLayoutManager = new LinearLayoutManager(this);
         mRvNotes.setLayoutManager(mLayoutManager);
-        mAdapter = new RvNotesAdapter(mNotes);
+        mAdapter = new RvNotesAdapter(mNotes, this);
         mRvNotes.setAdapter(mAdapter);
     }
 
@@ -92,21 +88,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case CREATE: {
-                    Note note = (Note) data.getSerializableExtra(NOTE);
+                case Constants.REQUEST_CODE_CREATE: {
+                    Note note = (Note) data.getSerializableExtra(Constants.EXTRA_KEY_NAME_NOTE);
                     mNoteLab.addNote(note);
                     updateUI();
                     break;
                 }
-                case MODIFY: {
-                    Note note = (Note) data.getSerializableExtra(NOTE);
+                case Constants.REQUEST_CODE_MODIFY: {
+                    Note note = (Note) data.getSerializableExtra(Constants.EXTRA_KEY_NAME_NOTE);
                     mNoteLab.updateNote(note);
                     updateUI();
                     break;
                 }
             }
         } else {
-            Toast.makeText(MainActivity.this, "Something wrong with the returning result", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, "Something wrong with the returning result", Toast.LENGTH_SHORT).show();
         }
     }
 }
