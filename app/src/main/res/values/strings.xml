@@ -15,4 +15,15 @@
     <string name="edit_note_activity_title_cannot_be_empty">
         The title cannot be empty.(If you want to delete the note,
         return to the main list and long press the note you want to delete.)</string>
+    <string name="activity_main_backup_succussful">Backup successful.</string>
+    <string name="activity_main_backup_failed">
+        Backup failed!!!
+        (Check if the permission is granted and you have enough storage space left.)</string>
+    <string name="backup_dialog_create_backup_warnning">
+        Creating a new backup means that the previous one will be overwritten.
+        Click \" Yes \" if you wish to continue.</string>
+    <string name="backup_dialog_backup_canceled">Backup canceled</string>
+    <string name="main_activity_backup_fail_permission_denied">
+        Backup failed due to permission being denied.
+        Please grant the permission of external storage read/write and try again.</string>
 </resources>

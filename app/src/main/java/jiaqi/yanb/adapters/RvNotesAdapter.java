@@ -1,7 +1,6 @@
 package jiaqi.yanb.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -53,7 +51,7 @@ public class RvNotesAdapter extends RecyclerView.Adapter<RvNotesAdapter.NoteHold
                     extras.putSerializable(Constants.EXTRA_KEY_NAME_NOTE, mNote);
                     extras.putSerializable(Constants.EXTRA_KEY_NAME_EDIT_MODE, EditMode.MODIFY);
                     intent.putExtras(extras);
-                    mContext.startActivityForResult(intent, Constants.REQUEST_CODE_MODIFY);
+                    mContext.startActivityForResult(intent, Constants.ACTIVITY_REQUEST_CODE_MODIFY);
                 }
             });
         }
