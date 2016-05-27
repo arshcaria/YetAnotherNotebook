@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import jiaqi.yanb.Constants;
@@ -29,6 +30,7 @@ public class RvNotesAdapter extends RecyclerView.Adapter<RvNotesAdapter.NoteHold
     public class NoteHolder extends RecyclerView.ViewHolder {
 
         public TextView mTitle;
+        public TextView mDate;
         public TextView mContent;
 
         // Note bound to this holder.
@@ -39,6 +41,7 @@ public class RvNotesAdapter extends RecyclerView.Adapter<RvNotesAdapter.NoteHold
         public NoteHolder(View itemView) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.item_note_title);
+            mDate = (TextView) itemView.findViewById(R.id.item_note_date);
             mContent = (TextView) itemView.findViewById(R.id.item_note_content);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +63,10 @@ public class RvNotesAdapter extends RecyclerView.Adapter<RvNotesAdapter.NoteHold
             mNote = mNotes.get(mPosition);
             mTitle.setText(mNote.getTitle());
             mContent.setText(mNote.getContent());
+
+            SimpleDateFormat sdf = new SimpleDateFormat();
+            String dateString = sdf.format(mNote.getDate());
+            mDate.setText(dateString);
         }
     }
 
