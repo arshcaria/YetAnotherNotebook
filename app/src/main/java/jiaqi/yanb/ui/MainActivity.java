@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                      * The bug and discussion about it can be found in:
                      * https://code.google.com/p/android/issues/detail?id=196178
                      * http://stackoverflow.com/questions/33264031/calling-dialogfragments-show-from-within-onrequestpermissionsresult-causes
+                     * There are several workarounds and I just picked one of them.
                      */
                     mHandler.postDelayed(new Runnable() {
                         @Override
