@@ -17,7 +17,29 @@ import java.util.List;
 import jiaqi.yanb.Note;
 import jiaqi.yanb.NoteLab;
 import jiaqi.yanb.R;
-import jiaqi.yanb.ui.MainActivity;
+
+/* Backup file example (JSON)
+********************************************
+{
+  "root": {
+    "notes": [
+      {
+        "uuid": "uuid1",
+        "title": "Note 1",
+        "content": "Note Content 1",
+        "date": "1234554321"
+      },
+      {
+        "uuid": "uuid2",
+        "title": "Note 2",
+        "content": "Note Content 2",
+        "date": "2345665432"
+      }
+    ]
+  }
+}
+*******************************************
+*/
 
 public class BackupRestore {
 
@@ -56,6 +78,7 @@ public class BackupRestore {
     private boolean backupToFile(List<Note> notes) {
         if (!isExternalStorageWritable()) {
             // external storage is not writable, fail and return false.
+            Log.e(TAG, "external storage not writable");
             return false;
         }
 
@@ -66,7 +89,7 @@ public class BackupRestore {
 
         File dir = new File(exStorageDirPath + "/" + APP_DIR);
         if (!dir.mkdirs() && !dir.exists()) {
-            // dir creation failed and the dir does not exist.
+            Log.e(TAG, "dir creation failed and the dir does not exist.");
             return false;
         }
 
@@ -86,6 +109,8 @@ public class BackupRestore {
         }
 
         // if there is no exception, you should not reach here.
+        Log.e(TAG, "should not reach here");
+
         return false;
     }
 

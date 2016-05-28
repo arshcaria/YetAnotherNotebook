@@ -8,7 +8,7 @@
     android:layout_marginRight="@dimen/note_item_margin"
     android:layout_marginStart="@dimen/note_item_margin"
     android:layout_marginTop="@dimen/note_item_margin"
-    android:background="#abcfe7"
+    android:background="@drawable/bg_rounded_corners"
     android:orientation="vertical"
     android:padding="@dimen/note_item_padding">
 

@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import jiaqi.yanb.R;
 import jiaqi.yanb.backup.BackupRestore;
-import jiaqi.yanb.ui.MainActivity;
 
 /**
  * Created by Jiaqi on 5/27/2016.

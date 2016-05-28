@@ -65,7 +65,7 @@ public class EditNoteActivity extends AppCompatActivity implements SaveNoteDialo
 
     @Override
     public void onBackPressed() {
-        if (mNoteChanged == false) {
+        if (!mNoteChanged) {
             Toast.makeText(this, R.string.edit_note_activity_no_change, Toast.LENGTH_SHORT).show();
             finish();
         } else {
@@ -90,14 +90,6 @@ public class EditNoteActivity extends AppCompatActivity implements SaveNoteDialo
                 }
             }
         }
-    }
-
-    public boolean isNoteChanged() {
-        return mNoteChanged;
-    }
-
-    public void noteChanged(boolean changed) {
-        mNoteChanged = changed;
     }
 
     private boolean isContentEmpty() {
